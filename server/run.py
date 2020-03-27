@@ -1,10 +1,22 @@
-import requests
-import json
+from flask import Flask
+from flask import request
 
 
-resp = requests.get("https://planzajec.eaiib.agh.edu.pl/view/timetable/645/events?start=2020-03-02&end=2020-03-07&_=1585327741228")
+app = Flask(__name__)
 
 
-print(json.dumps(resp.json(), indent=2))
+@app.route('/login',  methods=['GET', 'POST'])
+def login():
+    req = request.json
+
+    if 'login' in req and 'password' in req:
+        return 'Login successful'
+    else:
+        return 'Login not successful'
+
+
+
+
+
 
 
