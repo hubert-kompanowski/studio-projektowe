@@ -34,8 +34,8 @@ for i, currentElement in enumerate(dataArray, start = 0):
         title = currentElement.get('title').split(',')[0]
         room = currentElement.get('title').split(',')[2].split('<br/>')[1]
         teacher = currentElement.get('title').split(',')[3]
-        if len(currentElement.get('title').split(',')) > 3:
-            teacher += currentElement.get('title').split(',')[3].split('<br/>')[0]
+        if len(currentElement.get('title').split(',')) > 4:
+            teacher += currentElement.get('title').split(',')[4].split('<br/>')[0]
     day = datetime.strptime(currentElement.get('start'), dateFormat).weekday()+1
     start = datetime.strptime(currentElement.get('start'), dateFormat).time()
     end = datetime.strptime(currentElement.get('end'), dateFormat).time()
