@@ -1,11 +1,10 @@
 from flask import Flask
 from flask import request
 
-
 app = Flask(__name__)
 
 
-@app.route('/login',  methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     req = request.json
 
@@ -13,10 +12,3 @@ def login():
         return 'Login successful'
     else:
         return 'Login not successful'
-
-
-
-
-
-
-
