@@ -20,7 +20,7 @@ def login():
 
 
 @app.route('/api/register', methods=['GET', 'POST'])
-def login():
+def register():
     req = request.json
 
     if 'login' in req and 'password' in req:
