@@ -3,7 +3,11 @@
 from flask import Flask
 from flask import request
 
+<<<<<<< HEAD
 from database_operations import check_login
+=======
+from database_operations import check_login, add_user
+>>>>>>> d2524ec1873a78f4af204a9f8935bba6981921cd
 
 app = Flask(__name__)
 
@@ -14,6 +18,18 @@ def login():
 
     if 'login' in req and 'password' in req:
         i = check_login(req['login'], req['password'])
+        return {'id': i}
+    else:
+        return {'id': -1}
+
+
+@app.route('/api/register', methods=['GET', 'POST'])
+def login():
+    req = request.json
+
+    if 'login' in req and 'password' in req:
+        i = add_user(req['last_name'], req['login'], req['name'],
+                     req['password'])
         return {'id': i}
     else:
         return {'id': -1}
