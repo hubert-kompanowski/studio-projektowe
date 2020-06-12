@@ -21,6 +21,7 @@ def databaseArrayToJson(events):
     for i in range(len(events)):
         result += modelToJson(databaseToModel(events[i]))
         result += ", "
+    result = result[:-2]
     result += "]"
     return result
 
