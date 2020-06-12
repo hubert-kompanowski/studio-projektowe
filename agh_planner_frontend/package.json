@@ -1,14 +1,38 @@
 {
-  "name": "agh_planner_frontend",
+  "name": "client",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http//server-name/public",
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
+    "@devexpress/dx-react-core": "^2.6.3",
+    "@devexpress/dx-react-scheduler": "^2.6.3",
+    "@devexpress/dx-react-scheduler-material-ui": "^2.6.3",
+    "@material-ui/core": "^4.10.2",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/pickers": "^3.2.10",
+    "@material-ui/system": "^4.9.14",
+    "@types/jest": "24.0.20",
+    "@types/node": "12.11.7",
+    "@types/react": "16.9.11",
+    "@types/react-alert": "^5.2.0",
+    "@types/react-bootstrap": "^0.32.22",
+    "@types/react-dom": "16.9.3",
+    "@types/react-router-dom": "^5.1.5",
+    "axios": "^0.19.2",
+    "date-fns": "^2.14.0",
+    "inline-style-prefixer": "^5.1.2",
+    "material-table": "^1.60.0",
+    "material-ui-pickers": "^2.2.4",
+    "moment": "^2.26.0",
     "react": "^16.13.1",
+    "react-alert": "^6.0.1",
+    "react-alert-template-basic": "^1.0.0",
+    "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-hook-form": "^3.29.4",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^3.4.1",
+    "save": "^2.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -16,6 +40,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy": "http://localhost:8080",
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -30,5 +55,21 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.34.0",
+    "@typescript-eslint/parser": "^2.34.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-react-app": "^5.2.1",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-flowtype": "^3.13.0",
+    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "eslint-plugin-standard": "^4.0.1"
   }
 }
