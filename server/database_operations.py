@@ -85,10 +85,3 @@ def add_user(last_name, login, name, password_):
 
     return check_login(login, password_)
 
-
-print(add_user('Kompanowski', 'hkomp', 'Hubert', 'hkomp'))
-
-# print(check_login('jkowalski', 'janek'))
-
-
-# print(execute_query("SELECT * from USERS", create_database_connection()))
