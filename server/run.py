@@ -3,6 +3,8 @@
 from flask import Flask
 from flask import request
 
+from server.database_operations import check_login
+
 app = Flask(__name__)
 
 
@@ -11,9 +13,10 @@ def login():
     req = request.json
 
     if 'login' in req and 'password' in req:
-        return {'text': 'Login successful', 'bool': True}
+        i = check_login(req['login'], req['password'])
+        return {'id': i}
     else:
-        return {'text': 'Login not successful', 'bool': False}
+        return {'id': -1}
 
 
 @app.route('/api/get_plan', methods=['GET', 'POST'])
