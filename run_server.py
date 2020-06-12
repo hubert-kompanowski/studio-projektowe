@@ -1,9 +1,9 @@
-# import schedule
-
 from flask import Flask
 from flask import request
 
-from database_operations import check_login, add_user
+from server.database_operations import check_login, add_user
+from timetable_api.EventJsonMapper import databaseArrayToJson
+from timetable_api.eventsDAO import get_all_events
 
 app = Flask(__name__)
 
@@ -33,13 +33,15 @@ def register():
 
 @app.route('/api/get_plan', methods=['GET', 'POST'])
 def getting_schedule():
-    req = request.json
+    # req = request.json
 
-    if 'group' in req and 'start_date' in req and 'end_date' in req:
-        return "Not implemented jet"
-        # return schedule.get_schedule(group, start_date, end_date)
-    else:
-        return "Not implemented jet"
+    return databaseArrayToJson(get_all_events())
+
+    # if 'group' in req and 'start_date' in req and 'end_date' in req:
+    #     return "Not implemented jet"
+    #     # return schedule.get_schedule(group, start_date, end_date)
+    # else:
+    #     return "Not implemented jet"
 
 
 if __name__ == '__main__':
