@@ -3,7 +3,7 @@
 from flask import Flask
 from flask import request
 
-from server.database_operations import check_login
+from database_operations import check_login
 
 app = Flask(__name__)
 

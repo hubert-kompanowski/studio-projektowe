@@ -8,9 +8,9 @@ const SignUp = (props) => {
 
   const [state, setState] = useState({
     user : {
-      email: null,
+      login: null,
       password: null,
-      first_name: null,
+      name: null,
       last_name: null
     }
   });

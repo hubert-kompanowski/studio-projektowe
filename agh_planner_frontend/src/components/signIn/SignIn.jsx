@@ -6,7 +6,7 @@ import Axios from 'axios';
 const SignIn = (props) => {
 
     const [state, setState] = useState({
-        email: null,
+        login: null,
         password: null
     });
     
