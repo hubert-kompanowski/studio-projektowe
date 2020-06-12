@@ -6,6 +6,10 @@ import Public from './components/Public';
 import SignIn from './components/signIn/SignIn';
 import SignUp from './components/signUp/SignUp';
 import ShedulerTest from './ShedulerTest';
+import Auth from './components/Auth';
+import PrivateRoute from './components/PrivateRoute';
+
+
 
 const App = () => {
     return (
@@ -20,8 +24,7 @@ const App = () => {
             <Route path='/sign-in' component={SignIn}/>
             <Route path='/sign-up' component={SignUp}/>
             <Route path='/sample-shedule' component={ShedulerTest}/>
-            {/* TODO */}
-            {/* <PrivateRoute authenticated={Auth.getAuth()} exact path="/home-page" component={HomePage} /> */}
+            <PrivateRoute authenticated={Auth.getAuth()} exact path="/home-page" component={ShedulerTest} />
           </Switch>
         </div>
       </BrowserRouter>
