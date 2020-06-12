@@ -71,24 +71,19 @@ def check_login(login, password):
         return -1
 
 
-def add_user(last_name, login, name, password_):
+def add_user(lastname, login, name, password):
     cnx = create_database_connection()
-    password = hash_password(password_)
+    password = hash_password(password)
 
     query = (f"insert into USERS (lastname, login, name, password) "
-             f"values ('{last_name}', '{login}', '{name}', '{password}')")
+             f"values ('{lastname}', '{login}', '{name}', '{password}')")
     with cnx.cursor() as cursor:
         cursor.execute(query)
 
     cnx.commit()
     cnx.close()
 
-    return check_login(login, password_)
 
-
-print(add_user('Kompanowski', 'hkomp', 'Hubert', 'hkomp'))
-
-# print(check_login('jkowalski', 'janek'))
 
 
 # print(execute_query("SELECT * from USERS", create_database_connection()))
