@@ -4,6 +4,7 @@ from flask import request
 from server.database_operations import check_login, add_user
 from timetable_api.EventJsonMapper import databaseArrayToJson
 from timetable_api.eventsDAO import get_all_events
+from timetable_api.CoursesPicker import getCoursesList
 
 app = Flask(__name__)
 
@@ -42,6 +43,11 @@ def getting_schedule():
     #     # return schedule.get_schedule(group, start_date, end_date)
     # else:
     #     return "Not implemented jet"
+
+
+@app.route('/api/courses', methods=['GET', 'POST'])
+def course_picker():
+    return getCoursesList()
 
 
 if __name__ == '__main__':
