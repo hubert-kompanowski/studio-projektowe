@@ -19,6 +19,4 @@ def getCoursesList():
         single_event_dict["id"] = event.idx
         single_event_dict["info"] = weekdays[event.day-1] + ", " + str(event.start) + "-" + str(event.end) + ", " + event.teacher
         json_dict[event.title].append(single_event_dict)
-    print(dumps(json_dict, ensure_ascii=False))
-
-getCoursesList()
+    return dumps(json_dict, ensure_ascii=False)
