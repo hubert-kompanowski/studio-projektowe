@@ -14,10 +14,10 @@ def login():
     req = request.json
 
     if 'login' in req and 'password' in req:
-        i = check_login(req['login'], req['password'])
-        return {'id': i}
+        i, name, lastname = check_login(req['login'], req['password'])
+        return {'id': i, 'name': name, 'lastname':lastname}
     else:
-        return {'id': -1}
+        return {'id': -1, 'name': "", 'lastname':""}
 
 
 @app.route('/api/register', methods=['GET', 'POST'])

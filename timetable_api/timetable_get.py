@@ -4,7 +4,7 @@ from datetime import datetime
 import psycopg2
 from server.database_operations import execute_query, create_database_connection
 from timetable_api.TimetableEvent import TimetableEvent
-from timetable_api.eventsDAO import add_to_database, drop_and_create_table
+from timetable_api.eventsDAO import add_to_database, drop_and_create_table, drop_and_create_joined_table
 
 
 def get_timetable_and_add_to_database():
@@ -46,5 +46,6 @@ def get_timetable_and_add_to_database():
 
 
 drop_and_create_table()
+drop_and_create_joined_table()
 get_timetable_and_add_to_database()
 
