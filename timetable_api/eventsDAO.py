@@ -1,6 +1,22 @@
 from server.database_operations import execute_query, create_database_connection
 from timetable_api.TimetableEvent import TimetableEvent
 
+def drop_and_create_joined_table():
+    cnx = create_database_connection()
+    cursor = cnx.cursor()
+    query = f"DROP TABLE IF EXISTS student_events;"
+    cursor.execute(query)
+    query = f"""
+            CREATE TABLE student_events (
+                student_id  int REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE,
+                event_id    int REFERENCES events (id) ON UPDATE CASCADE ON DELETE CASCADE,
+                CONSTRAINT student_events_pkey PRIMARY KEY (student_id, event_id)
+                );"""
+    cursor.execute(query)
+    cnx.commit()
+    cnx.close()
+
+
 def drop_and_create_table():
     cnx = create_database_connection()
     cursor = cnx.cursor()
@@ -33,5 +49,14 @@ def add_to_database(event: TimetableEvent, cnx):
 def get_all_events():
     cnx = create_database_connection()
     resp = execute_query("SELECT * FROM events;", cnx)
-    cnx.close
+    cnx.close()
     return resp
+
+def set_student_events(student_id, events_list):
+    cnx = create_database_connection()
+    cursor = cnx.cursor()
+    cursor.execute("""DELETE FROM student_events where student_id = {};""".format(student_id), cnx)
+    for event in events_list:
+        cursor.execute("""INSERT INTO student_events (student_id, event_id) VALUES ({}, {});""".format(student_id, event.idx), cnx)
+    cnx.commit()
+    cnx.close()
