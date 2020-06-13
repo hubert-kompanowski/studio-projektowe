@@ -56,19 +56,21 @@ def execute_query(query, cnx):
 
 def check_login(login, password):
     cnx = create_database_connection()
-    query = f"SELECT id, login, password FROM USERS WHERE login='{login}'"
+    query = f"SELECT id, login, password, name, lastname FROM USERS WHERE login='{login}'"
     resp = execute_query(query, cnx)
     if len(resp) == 0:
         return "0"
 
     id = resp[0][0]
+    name = resp[0][3]
+    lastname = resp[0][4]
     stored_login = resp[0][1].strip()
     stored_password = resp[0][2].strip()
 
     if login == stored_login and verify_password(stored_password, password):
-        return id
+        return id, name, lastname
     else:
-        return -1
+        return -1, "", ""
 
 
 def add_user(last_name, login, name, password_):
