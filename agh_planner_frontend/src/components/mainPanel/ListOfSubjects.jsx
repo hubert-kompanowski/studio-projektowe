@@ -13,43 +13,36 @@ import {
     DateNavigator,
 } from '@devexpress/dx-react-scheduler-material-ui';
 import Axios from 'axios';
-import { Component } from 'react';
-import { List, ListItem } from '@material-ui/core';
 
 
-class ListOfSubjects extends Component {
+const ListOfSubjects = (props) => {
 
-    state = {
-        listOfSubjects: [],
-    }
+    
+    var self = props;
 
-    componentDidMount() {
-        this.getSubjects()
+    Axios.get("/api/courses")
+        .then(response => {
+            //TODO
 
-    }
+        })
 
-    getSubjects() {
-        Axios.get('/api/courses')
-            .then(res => {
-                this.setState({ listOfSubjects: res.data })
-                console.log(res)
-            })
-            
-    }
+    // var self = this;
+    // axios.get('/url')
+    //     .then(function (response) {
+    //         console.log(response);
+    //         self.setState({ events: response.data })
+    //     })
+    //     .catch(function (error) {
+    //         console.log(error);
+    //     });
+    // //the rest of the code
+    // var a = 'i might be executed before the server responds'
 
-    render() {
-        return (
-            <div>
-                test
-                {/* <List>
-                    <ListItem>
-                    
-                    </ListItem>
-                </List> */}
-            </div>
-        );
-    }
+
+    return (
+        <div>
+            test
+        </div>
+    );
 }
-
 export default ListOfSubjects
-// JSON.parse(localStorage.getItem('user')).id}
