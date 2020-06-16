@@ -52,6 +52,12 @@ def get_all_events():
     cnx.close()
     return resp
 
+def get_student_events(id):
+    cnx = create_database_connection()
+    resp = execute_query("SELECT * FROM events JOIN student_events se on events.id = se.event_id WHERE student_id = {};".format(id), cnx)
+    cnx.close()
+    return resp
+
 def set_student_events(student_id, events_list):
     cnx = create_database_connection()
     cursor = cnx.cursor()
