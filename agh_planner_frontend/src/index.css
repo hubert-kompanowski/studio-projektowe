@@ -12,3 +12,14 @@ code {
     monospace;
 }
 
+
+.sidebar{
+  float: left;
+  width: 15%;
+}
+
+.landing_page{
+  margin-top: 15px;
+  width: 85%;
+  float: left;
+}

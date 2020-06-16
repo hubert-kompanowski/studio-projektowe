@@ -7,8 +7,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import { makeStyles } from '@material-ui/core/styles';
 import { Calendar } from 'material-ui-pickers';
 import React, { useState } from 'react';
-import Scheduler from './mainPanel/Scheduler';
-
+import SchedulerTest from "./SchedulerTest";
 
 
 
@@ -55,26 +54,28 @@ export default function MainHomeComponent() {
 
   return (
     <div className={classes.root}>
-      <Drawer
-        className={classes.drawer}
-        variant="permanent"
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
-        <div className={classes.toolbar} />
+      test
+      {/*<Drawer*/}
+      {/*  className={classes.drawer}*/}
+      {/*  variant="permanent"*/}
+      {/*  classes={{*/}
+      {/*    paper: classes.drawerPaper,*/}
+      {/*  }}*/}
+      {/*>*/}
+      {/*  <div className={classes.toolbar} />*/}
 
-        <List>
-          <ListItem button onClick={() => setToRender(<Scheduler />)}>
-            <ListItemIcon><Calendar /></ListItemIcon>
-            <ListItemText primary="Scheduler" />
-          </ListItem>
-        </List>
-      </Drawer>
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        {toRender}
-      </main>
+      {/*  <List>*/}
+      {/*    <ListItem button onClick={() => setToRender(<SchedulerTest />)}>*/}
+      {/*      <ListItemIcon><Calendar /></ListItemIcon>*/}
+      {/*      <ListItemText primary="Scheduler" />*/}
+      {/*    </ListItem>*/}
+      {/*  </List>*/}
+      {/*</Drawer>*/}
+      {/*<main className={classes.content}>*/}
+      {/*  <div className={classes.toolbar} />*/}
+      {/*  {toRender}*/}
+      {/*</main>*/}
+      <SchedulerTest/>
     </div>
   );
 }
