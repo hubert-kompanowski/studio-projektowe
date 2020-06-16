@@ -1,9 +1,9 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask import request
 
 from server.database_operations import check_login, add_user
 from timetable_api.EventJsonMapper import databaseArrayToJson
-from timetable_api.eventsDAO import get_all_events
+from timetable_api.eventsDAO import get_all_events, get_student_events, set_student_events
 from timetable_api.CoursesPicker import getCoursesList
 
 app = Flask(__name__)
@@ -45,9 +45,22 @@ def getting_schedule():
     #     return "Not implemented jet"
 
 
+@app.route('/api/get_plan/<id>', methods=['GET', 'POST'])
+def getting_student_schedule(id):
+
+    return databaseArrayToJson(get_student_events(id))
+
+
 @app.route('/api/courses', methods=['GET', 'POST'])
 def course_picker():
     return getCoursesList()
+
+
+@app.route('/api/set_plan/<id>', methods=['GET', 'POST'])
+def setting_student_schedule(id):
+    req = request.json
+    return jsonify(200)
+    # set_student_events(id, req['events'])
 
 
 if __name__ == '__main__':

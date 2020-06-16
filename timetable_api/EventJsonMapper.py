@@ -17,12 +17,13 @@ def modelToJson(event: TimetableEvent):
     return jsonEvent
 
 def databaseArrayToJson(events):
-    result = "["
+    result = "{["
     for i in range(len(events)):
         result += modelToJson(databaseToModel(events[i]))
         result += ", "
-    result = result[:-2]
-    result += "]"
+    if (len(events) > 0):
+        result = result[:-2]
+    result += "]}"
     return result
 
 
