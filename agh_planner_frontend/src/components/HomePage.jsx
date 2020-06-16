@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Auth from './Auth';
 import Schedule from './mainPanel/Schedule';
 import ListOfSubjects from './mainPanel/ListOfSubjects';
-import MySubjects from './mainPanel/MySubjects';
+
 
 import TopNavBar from './TopNavBar';
 import { Link, Route, Switch } from "react-router-dom";
@@ -22,7 +22,6 @@ const exampleText =
 const HomePage = (props) => {
     const [toRender, setToRender] = useState(exampleText);
     const [user, setUser] = useState({});
-    
 
     useEffect(() => {
         setUser(JSON.parse(localStorage.getItem('user')));
@@ -50,10 +49,10 @@ const HomePage = (props) => {
                                 Schedule
                                     </ListItem>
                             <ListItem button onClick={() => setToRender(<ListOfSubjects />)}>
-                                ListOfSubjects
+                                Plan
                                     </ListItem>
-                            <ListItem button onClick={() => setToRender(<MySubjects />)}>
-                                MySubjects
+                            <ListItem button onClick={() => setToRender(<Schedule />)}>
+                                Subjects
                                     </ListItem>
                         </List>
                     </Grid>
