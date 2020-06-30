@@ -22,12 +22,12 @@ const SignIpForm = (props) => {
             <Grid item xs={12} sm={6}>
               <TextField
                 autoComplete="fname"
-                name="firstName"
+                name="name"
                 variant="outlined"
                 required
                 fullWidth
-                id="first_name"
-                label="First Name"
+                id="name"
+                label="Name"
                 autoFocus
                 onChange={props.handleChange}
               />
@@ -49,10 +49,10 @@ const SignIpForm = (props) => {
                 variant="outlined"
                 required
                 fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
+                id="login"
+                label="Login"
+                name="login"
+                autoComplete="login"
                 onChange={props.handleChange}
               />
             </Grid>
