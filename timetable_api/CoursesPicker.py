@@ -39,4 +39,4 @@ def getCoursesList():
 
     return dumps({"courses": courses}, ensure_ascii=False)
 
-print(getCoursesList())
+# print(getCoursesList())
