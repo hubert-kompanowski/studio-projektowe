@@ -20,7 +20,7 @@ import { List, ListItem } from '@material-ui/core';
 class ListOfSubjects extends Component {
 
     state = {
-        listOfSubjects: [],
+        // courses: [],
     }
 
     componentDidMount() {
@@ -31,22 +31,29 @@ class ListOfSubjects extends Component {
     getSubjects() {
         Axios.get('/api/courses')
             .then(res => {
-                this.setState({ listOfSubjects: res.data })
-                console.log(res)
+                const courses = res.data
+                this.setState({ courses })
+                console.log(courses)
             })
-            
+
     }
 
     render() {
         return (
-            <div>
-                test
-                {/* <List>
-                    <ListItem>
-                    
-                    </ListItem>
-                </List> */}
-            </div>
+            <ul>
+                {this.state.courses.map(course =>
+                    <li key={course.name}>
+                        {
+                            course.name
+                                // course.map(event =>
+                                // <li key={event.id}>
+                                //     {event.info}
+                                // </li>)
+                        }
+                    </li>
+                )}
+            </ul>
+
         );
     }
 }
