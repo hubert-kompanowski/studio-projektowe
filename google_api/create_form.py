@@ -1,6 +1,10 @@
 from googleapiclient import errors
 from googleapiclient.discovery import build
 from oauth2client import file as oauth_file, client, tools
+from server.database_operations import execute_query, create_database_connection
+from timetable_api.TimetableEvent import TimetableEvent
+from timetable_api.eventsDAO import get_all_events, set_student_events
+from timetable_api.EventJsonMapper import databaseToModel
 
 SCRIPT_ID = 'MAtUnKvmALzI7I-2ZXFKOowN-YzWt5ix_'
 
@@ -33,6 +37,7 @@ def execute_request(service, request):
             # with String keys and values, and so the result is treated as a
             # Python dictionary (folderSet).
             print("done")
+            return response
 
     except errors.HttpError as e:
         # The API encountered a problem before the script started executing.
@@ -53,14 +58,14 @@ def create_service():
 
 def clear_form():
     service = create_service()
-    request = {"function": "create_form"}
+    request = {"function": "create_form", "devMode": "false"}
     execute_request(service, request)
 
 
 def add_questions():
     service = create_service()
     request = {"function": "add_questions",
-               "parameters": [[["WTM", "1a", "1b", "2a", "2b"], ["kompi", "1a", "1b"]]]}
+               "parameters": [[["Teoria kompilacji i kompilatory", "1", "2", "3", "4", "5"], ["SOA w projektowaniu i implementacji oprogramowania", "1a", "1b", "2a", "2b", "3b", "4a"]]], "devMode": "false"}
     execute_request(service, request)
 
 
