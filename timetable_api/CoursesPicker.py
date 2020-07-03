@@ -2,10 +2,11 @@ from json import dumps
 from server.database_operations import execute_query, create_database_connection
 from timetable_api.EventJsonMapper import databaseToModel
 
+
 def getCoursesList():
     weekdays = ["pon.", "wt.", "sr.", "czw.", "pt."]
     cnx = create_database_connection()
-    resp = execute_query("SELECT * FROM events ORDER BY title;", cnx)
+    resp = execute_query("SELECT * FROM events WHERE study_group NOT LIKE '0' ORDER BY title;", cnx)
     # print(resp)
     cnx.close()
     # json_dict = {}
@@ -26,9 +27,11 @@ def getCoursesList():
     course = {"name": ""}
     for i in range(len(resp)):
         event = databaseToModel(resp[i])
+        # print(course)
 
         if event.title != course["name"]:
-            courses.append(course)
+            if course["name"] != "":
+                courses.append(course.copy())
             course["events"] = []
             course["name"] = event.title
 
@@ -36,7 +39,7 @@ def getCoursesList():
             event.end) + ", " + event.teacher}
 
         course["events"].append(single_event_dict)
-
+        # print(courses)
     return dumps({"courses": courses}, ensure_ascii=False)
 
 # print(getCoursesList())
