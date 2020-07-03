@@ -8,6 +8,23 @@ from timetable_api.EventJsonMapper import databaseToModel
 
 SCRIPT_ID = 'MAtUnKvmALzI7I-2ZXFKOowN-YzWt5ix_'
 
+def get_courses_for_form():
+    cnx = create_database_connection()
+    resp = execute_query("SELECT * FROM events WHERE study_group NOT LIKE '0' ORDER BY title, study_group;", cnx)
+    cnx.close()
+    courses = []
+    prev_title = ""
+    course = []
+    for i in range(len(resp)):
+        event = databaseToModel(resp[i])
+
+        if event.title != prev_title:
+            if course:
+                courses.append(course.copy())
+            course = [event.title]
+        prev_title = event.title
+        course.append(event.group)
+    return courses
 
 def execute_request(service, request):
     try:
@@ -65,7 +82,7 @@ def clear_form():
 def add_questions():
     service = create_service()
     request = {"function": "add_questions",
-               "parameters": [[["Teoria kompilacji i kompilatory", "1", "2", "3", "4", "5"], ["SOA w projektowaniu i implementacji oprogramowania", "1a", "1b", "2a", "2b", "3b", "4a"]]], "devMode": "false"}
+               "parameters": [get_courses_for_form()], "devMode": "false"}
     execute_request(service, request)
 
 
