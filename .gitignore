@@ -1,3 +1,4 @@
 .idea
 server/__pycache__/*
 .gitignore
+timetable_api/__pycache__/*

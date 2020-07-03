@@ -13,7 +13,7 @@ const SignIn = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         Axios.post('/api/login', {
-            email: state.email,
+            login: state.login,
             password: state.password
         })
         .then(response => {

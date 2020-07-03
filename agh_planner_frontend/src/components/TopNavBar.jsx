@@ -19,14 +19,14 @@ const useStyles = makeStyles(theme => ({
       flexGrow: 1,
       display: 'block',
     },
-    
 }));
 
 const TopNavBar = (props) => {
     const signout = props.signout;
     const classes = useStyles();
-    const firstName = props.firstName;
-    const lastName = props.lastName;
+    const name = props.name;
+    const last_name = props.last_name;
+    const id = props.id;
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     
@@ -38,7 +38,7 @@ const TopNavBar = (props) => {
         <AppBar position="static">
             <Toolbar>
                 <Typography id = "greetings_text" variant="h6" className={classes.title}>
-                Hi {firstName} {lastName}!
+                Hi {name} {last_name} id [{id}]!
                 </Typography>
                 <IconButton color="inherit" onClick={handleMenu}>
                     <Settings/>
