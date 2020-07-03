@@ -44,8 +44,8 @@ def get_timetable_and_add_to_database():
     cnx.commit()
     cnx.close()
 
-
-drop_and_create_table()
-drop_and_create_joined_table()
-get_timetable_and_add_to_database()
+if __name__ == '__main__':
+    drop_and_create_table()
+    drop_and_create_joined_table()
+    get_timetable_and_add_to_database()
 
