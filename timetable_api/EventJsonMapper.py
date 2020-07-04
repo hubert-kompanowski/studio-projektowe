@@ -1,31 +1,36 @@
-from server.database_operations import execute_query, create_database_connection
 from timetable_api.TimetableEvent import TimetableEvent
-from timetable_api.eventsDAO import get_all_events
+import json
 
 
 def databaseToModel(element):
-    return TimetableEvent(element[1], element[2], element[3], element[4], element[5], element[6], element[7],
+    return TimetableEvent(element[1], element[2], element[3], element[4],
+                          element[5], element[6], element[7],
                           element[8], element[0])
 
 
 def modelToJson(event: TimetableEvent):
-    startDate = "2020-03-0{}T{}".format(event.day + 1, event.start)
-    endDate = "2020-03-0{}T{}".format(event.day + 1, event.end)
-    title = "{}, Sala: {}, Prowadzący: {}, Grupa: {}, {}".format(event.title, event.room, event.teacher, event.group,
+    startDate = "2020-06-{}T{}".format(event.day + 25, event.start)
+    endDate = "2020-06-{}T{}".format(event.day + 25, event.end)
+    title = "{}, Sala: {}, Prowadzący: {}, Grupa: {}, {}".format(event.title,
+                                                                 event.room,
+                                                                 event.teacher,
+                                                                 event.group,
                                                                  event.info)
-    jsonEvent = "{" + "startDate: '{}', endDate: '{}', title: '{}'".format(startDate, endDate, title) + "}"
-    return jsonEvent
+    jsonEvent = {
+        "startDate": startDate,
+        "endDate": endDate,
+        "title": title
+    }
+    return json.dumps(jsonEvent)
+
 
 def databaseArrayToJson(events):
-    result = "{["
+    result = {"data": []}
     for i in range(len(events)):
-        result += modelToJson(databaseToModel(events[i]))
-        result += ", "
-    if (len(events) > 0):
-        result = result[:-2]
-    result += "]}"
-    return result
+        result["data"].append(
+            json.loads(modelToJson(databaseToModel(events[i]))))
 
+    return json.dumps(result)
 
 # res = get_all_events()[49]
 # print(res)

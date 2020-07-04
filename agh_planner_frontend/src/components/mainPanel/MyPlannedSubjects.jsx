@@ -43,22 +43,22 @@ class MyPlannedSubjects extends Component {
     }
 
     getSchedule() { // TODO: update api endpoint
-        Axios.get('/api/get_plan/' + this.state.user.id)
+        Axios.get('/api/get_plan')
             .then(res => {
-                const schedule = res.data
-                // this.setState({ schedule: schedule })
-                console.log(schedule)
+                this.setState({schedule: res.data.data})
+                console.log(schedulerData)
                 console.log(this.state.schedule)
 
             })
+
 
     }
 
     render() {
         return (
             <Scheduler
-                data={schedulerData}
-                // data={this.state.schedule}
+                // data={schedulerData}
+                data={this.state.schedule}
             >
 
                 <ViewState
