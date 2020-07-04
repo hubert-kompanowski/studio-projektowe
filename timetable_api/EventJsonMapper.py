@@ -1,5 +1,6 @@
 from timetable_api.TimetableEvent import TimetableEvent
 import json
+from datetime import datetime, timedelta
 
 
 def databaseToModel(element):
@@ -9,19 +10,27 @@ def databaseToModel(element):
 
 
 def modelToJson(event: TimetableEvent):
-    startDate = "2020-06-{}T{}".format(event.day + 25, event.start)
-    endDate = "2020-06-{}T{}".format(event.day + 25, event.end)
+    week_day = datetime.today().weekday()
+    week_day = week_day if week_day < 6 else -1
+    monday = datetime.today() - timedelta(days=week_day)
+
+
+    start_date = (monday + timedelta(days=event.day - 1)).strftime(
+        '%Y-%m-%dT') + str(event.start)
+    end_date = (monday + timedelta(days=event.day - 1)).strftime(
+        '%Y-%m-%dT') + str(event.end)
+
     title = "{}, Sala: {}, Prowadzący: {}, Grupa: {}, {}".format(event.title,
                                                                  event.room,
                                                                  event.teacher,
                                                                  event.group,
                                                                  event.info)
-    jsonEvent = {
-        "startDate": startDate,
-        "endDate": endDate,
+    json_event = {
+        "startDate": start_date,
+        "endDate": end_date,
         "title": title
     }
-    return json.dumps(jsonEvent)
+    return json.dumps(json_event)
 
 
 def databaseArrayToJson(events):
