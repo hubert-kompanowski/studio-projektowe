@@ -15,11 +15,11 @@ import { Component } from 'react';
 import Axios from 'axios';
 
 var today = new Date();
-var currentDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + (today.getDate() + 2);
+var currentDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + (today.getDate());
 var schedulerData = [
-  { startDate: '2020-07-06T09:00:00', endDate: '2020-07-06T11:00', title: 'Labki z Gierdziem', test: 'test' },
-  { startDate: '2020-07-06T14:00', endDate: '2020-07-06T15:30', title: 'Labki z Nabagłem' },
-  { startDate: '2020-07-06T14:00:00', endDate: '2020-07-06T15:30:00', title: 'Teoria kompilacji i kompilatory, Sala: B-1 316, Prowadzący: Radosław Klimek dr hab. inż., Grupa: 3, ' }
+  { startDate: '2020-07-04T09:00:00', endDate: '2020-07-04T11:00', title: 'Labki z Gierdziem', test: 'test' },
+  { startDate: '2020-07-04T14:00', endDate: '2020-07-04T15:30', title: 'Labki z Nabagłem' },
+  { startDate: '2020-07-04T14:00:00', endDate: '2020-07-04T15:30:00', title: 'Teoria kompilacji i kompilatory, Sala: B-1 316, Prowadzący: Radosław Klimek dr hab. inż., Grupa: 3, ' }
 ];
 
 class Schedule extends Component {
@@ -49,7 +49,8 @@ class Schedule extends Component {
   render() {
     return (
       <Scheduler
-        data={this.state.schedule}
+      data={schedulerData}
+        // data={this.state.schedule} 
       >
 
         <ViewState
@@ -61,6 +62,7 @@ class Schedule extends Component {
           cellDuration={90}
         />
         <Appointments />
+        
         <CurrentTimeIndicator
           updateInterval={1000}
         />

@@ -2,3 +2,5 @@
 server/__pycache__/*
 .gitignore
 timetable_api/__pycache__/*
+agh_planner_frontend/Subcomponents.txt
+.gitignore
