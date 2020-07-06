@@ -72,10 +72,10 @@ def get_student_events(id, final):
     cnx = create_database_connection()
     if final == False:
         resp = execute_query(
-        "SELECT * FROM events JOIN student_events se on events.id = se.event_id WHERE student_id = {} and se.final = False;".format(id), cnx)
+        "SELECT * FROM events LEFT JOIN student_events se on events.id = se.event_id WHERE (student_id = {} and se.final = False) or study_group = '0';".format(id), cnx)
     else:
         resp = execute_query(
-        "SELECT * FROM events JOIN student_events se on events.id = se.event_id WHERE student_id= {} and se.final = True;".format(id), cnx)
+        "SELECT * FROM events LEFT JOIN student_events se on events.id = se.event_id WHERE (student_id= {} and se.final = True) or study_group = '0';".format(id), cnx)
     cnx.close()
     return resp
 
