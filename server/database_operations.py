@@ -59,7 +59,7 @@ def check_login(login, password):
     query = f"SELECT id, login, password, name, lastname FROM USERS WHERE login='{login}'"
     resp = execute_query(query, cnx)
     if len(resp) == 0:
-        return "0"
+        return -1, "", ""
 
     id = resp[0][0]
     name = resp[0][3]

@@ -5,6 +5,7 @@ from server.database_operations import check_login, add_user
 from timetable_api.EventJsonMapper import databaseArrayToJson
 from timetable_api.eventsDAO import get_all_events, get_student_events, set_student_events
 from timetable_api.CoursesPicker import getCoursesList
+from timetable_api.TimetableEvent import TimetableEvent
 
 app = Flask(__name__)
 
@@ -57,10 +58,17 @@ def course_picker():
 
 
 @app.route('/api/set_plan/<id>', methods=['GET', 'POST'])
+# @app.route('/api/set_plan/', methods=['GET', 'POST'])
 def setting_student_schedule(id):
     req = request.json
+    if 'UserID' in req and 'EventsIDs' in req:
+    # if 'EventsIDs' in req:
+        events = []
+        for event_id in req['EventsIDs']:
+            events.append(TimetableEvent("", "", "", "", "", "", "", "", idx=event_id))
+        set_student_events(req['UserID'], events)
+        # set_student_events(id, events)
     return jsonify(200)
-    # set_student_events(id, req['events'])
 
 
 if __name__ == '__main__':

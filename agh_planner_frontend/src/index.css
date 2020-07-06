@@ -12,3 +12,17 @@ code {
     monospace;
 }
 
+
+.sidebar{
+  float: left;
+  width: 10%;
+  background-color: lightgray;
+  border-radius: 15px;
+  margin: 10px;
+}
+
+.landing_page{
+  margin-top: 15px;
+  width: 85%;
+  float: left;
+}
