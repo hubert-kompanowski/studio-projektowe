@@ -1,6 +1,6 @@
 .idea
 server/__pycache__/*
 .gitignore
+token.json
 timetable_api/__pycache__/*
 agh_planner_frontend/Subcomponents.txt
-.gitignore

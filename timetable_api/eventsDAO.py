@@ -1,6 +1,7 @@
 from server.database_operations import execute_query, create_database_connection
 from timetable_api.TimetableEvent import TimetableEvent
 
+
 def drop_and_create_joined_table():
     cnx = create_database_connection()
     cursor = cnx.cursor()
@@ -15,6 +16,17 @@ def drop_and_create_joined_table():
     cursor.execute(query)
     cnx.commit()
     cnx.close()
+
+
+def user_exists(id):
+    cnx = create_database_connection()
+    resp = execute_query(
+        "SELECT * FROM users  WHERE id = {};".format(id), cnx)
+    cnx.close()
+    if resp:
+        return True
+    else:
+        return False
 
 
 def drop_and_create_table():
@@ -39,6 +51,7 @@ def drop_and_create_table():
     cnx.commit()
     cnx.close()
 
+
 def add_to_database(event: TimetableEvent, cnx):
     cursor = cnx.cursor()
     query = f"""INSERT INTO events (title, room, teacher, study_group, day, start_time, end_time, info)
@@ -46,23 +59,28 @@ def add_to_database(event: TimetableEvent, cnx):
                 ('{event.title}', '{event.room}', '{event.teacher}', '{event.group}', '{event.day}', '{event.start}', '{event.end}', '{event.info}');"""
     cursor.execute(query)
 
+
 def get_all_events():
     cnx = create_database_connection()
     resp = execute_query("SELECT * FROM events;", cnx)
     cnx.close()
     return resp
 
+
 def get_student_events(id):
     cnx = create_database_connection()
-    resp = execute_query("SELECT * FROM events JOIN student_events se on events.id = se.event_id WHERE student_id = {};".format(id), cnx)
+    resp = execute_query(
+        "SELECT * FROM events JOIN student_events se on events.id = se.event_id WHERE student_id = {};".format(id), cnx)
     cnx.close()
     return resp
+
 
 def set_student_events(student_id, events_list):
     cnx = create_database_connection()
     cursor = cnx.cursor()
     cursor.execute("""DELETE FROM student_events where student_id = {};""".format(student_id), cnx)
     for event in events_list:
-        cursor.execute("""INSERT INTO student_events (student_id, event_id) VALUES ({}, {});""".format(student_id, event.idx), cnx)
+        cursor.execute(
+            """INSERT INTO student_events (student_id, event_id) VALUES ({}, {});""".format(student_id, event.idx), cnx)
     cnx.commit()
     cnx.close()
