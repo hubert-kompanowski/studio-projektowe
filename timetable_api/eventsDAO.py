@@ -12,7 +12,7 @@ def drop_and_create_joined_table():
                 student_id  int REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE,
                 event_id    int REFERENCES events (id) ON UPDATE CASCADE ON DELETE CASCADE,
                 final       bool,
-                CONSTRAINT student_events_pkey PRIMARY KEY (student_id, event_id)
+                CONSTRAINT student_events_pkey PRIMARY KEY (student_id, event_id, final)
                 );"""
     cursor.execute(query)
     cnx.commit()
