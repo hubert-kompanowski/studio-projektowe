@@ -28,7 +28,7 @@ def assign_courses():
                 for event in events:
                     if event.title == course and event.group == answer[course]:
                         student_events.append(event)
-        set_student_events(student_id, student_events)
+        set_student_events(student_id, student_events, True)
 
 
 if __name__ == '__main__':

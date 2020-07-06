@@ -43,7 +43,8 @@ class FinalShedule extends Component {
     }
 
     getSchedule() { // TODO: update api endpoint
-      Axios.get('/api/get_plan')
+        let id = JSON.parse(localStorage.getItem('user')).id
+        Axios.get('/api/get_final_plan/'+id)
             .then(res => {
                 this.setState({schedule: res.data.data})
                 console.log(schedulerData)

@@ -35,7 +35,7 @@ def getCoursesList():
             course["events"] = []
             course["name"] = event.title
 
-        single_event_dict = {"id": event.idx, "info": weekdays[event.day - 1] + ", " + str(event.start) + "-" + str(
+        single_event_dict = {"id": event.idx, "info": "gr. "+ event.group +", "+weekdays[event.day - 1] + " " + str(event.start) + "-" + str(
             event.end) + ", " + event.teacher}
 
         course["events"].append(single_event_dict)

@@ -11,6 +11,7 @@ def drop_and_create_joined_table():
             CREATE TABLE student_events (
                 student_id  int REFERENCES users (id) ON UPDATE CASCADE ON DELETE CASCADE,
                 event_id    int REFERENCES events (id) ON UPDATE CASCADE ON DELETE CASCADE,
+                final       bool,
                 CONSTRAINT student_events_pkey PRIMARY KEY (student_id, event_id)
                 );"""
     cursor.execute(query)
@@ -67,20 +68,26 @@ def get_all_events():
     return resp
 
 
-def get_student_events(id):
+def get_student_events(id, final):
     cnx = create_database_connection()
-    resp = execute_query(
-        "SELECT * FROM events JOIN student_events se on events.id = se.event_id WHERE student_id = {};".format(id), cnx)
+    if final == False:
+        resp = execute_query(
+        "SELECT * FROM events JOIN student_events se on events.id = se.event_id WHERE student_id = {} and se.final = False;".format(id), cnx)
+    else:
+        resp = execute_query(
+        "SELECT * FROM events JOIN student_events se on events.id = se.event_id WHERE student_id= {} and se.final = True;".format(id), cnx)
     cnx.close()
     return resp
 
 
-def set_student_events(student_id, events_list):
+
+
+def set_student_events(student_id, events_list, final):
     cnx = create_database_connection()
     cursor = cnx.cursor()
-    cursor.execute("""DELETE FROM student_events where student_id = {};""".format(student_id), cnx)
+    cursor.execute("""DELETE FROM student_events where student_id = {} and final = {};""".format(student_id, final), cnx)
     for event in events_list:
         cursor.execute(
-            """INSERT INTO student_events (student_id, event_id) VALUES ({}, {});""".format(student_id, event.idx), cnx)
+            """INSERT INTO student_events (student_id, event_id, final) VALUES ({}, {}, {});""".format(student_id, event.idx, final), cnx)
     cnx.commit()
     cnx.close()

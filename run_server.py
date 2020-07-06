@@ -49,7 +49,12 @@ def getting_schedule():
 @app.route('/api/get_plan/<id>', methods=['GET', 'POST'])
 def getting_student_schedule(id):
 
-    return databaseArrayToJson(get_student_events(id))
+    return databaseArrayToJson(get_student_events(id, False))
+
+@app.route('/api/get_final_plan/<id>', methods=['GET', 'POST'])
+def getting_student_final_schedule(id):
+
+    return databaseArrayToJson(get_student_events(id, True))
 
 
 @app.route('/api/courses', methods=['GET', 'POST'])
@@ -66,7 +71,21 @@ def setting_student_schedule(id):
         events = []
         for event_id in req['EventsIDs']:
             events.append(TimetableEvent("", "", "", "", "", "", "", "", idx=event_id))
-        set_student_events(req['UserID'], events)
+        set_student_events(req['UserID'], events, False)
+        # set_student_events(id, events)
+    return jsonify(200)
+
+
+@app.route('/api/set_final_plan/<id>', methods=['GET', 'POST'])
+# @app.route('/api/set_plan/', methods=['GET', 'POST'])
+def setting_student_final_schedule(id):
+    req = request.json
+    if 'UserID' in req and 'EventsIDs' in req:
+    # if 'EventsIDs' in req:
+        events = []
+        for event_id in req['EventsIDs']:
+            events.append(TimetableEvent("", "", "", "", "", "", "", "", idx=event_id))
+        set_student_events(req['UserID'], events, True)
         # set_student_events(id, events)
     return jsonify(200)
 
