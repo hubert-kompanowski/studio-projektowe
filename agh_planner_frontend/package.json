@@ -18,7 +18,7 @@
     "@types/react-bootstrap": "^0.32.22",
     "@types/react-dom": "16.9.3",
     "@types/react-router-dom": "^5.1.5",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "date-fns": "^2.14.0",
     "inline-style-prefixer": "^5.1.2",
     "material-table": "^1.60.0",
